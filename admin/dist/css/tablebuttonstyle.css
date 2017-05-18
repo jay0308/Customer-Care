@@ -1,0 +1,31 @@
+#btn
+{
+	border:none;
+	background-color:teal;
+	padding:10px;
+	color:white;
+	float:right;
+	width:70px;
+	text-decoration:none;
+	text-align:center
+}
+#btn:hover
+{
+	background-color:red;
+	box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.edit_delete_category:hover
+{
+	background-color: red;
+	font-size:14px;
+    color: white;
+    text-decoration: none;
+}
+.edit_delete_category
+{
+    color: white;
+    border: none;
+    background-color: teal;
+    text-decoration: none;
+    padding: 4px;
+}

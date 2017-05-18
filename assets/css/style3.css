@@ -1,0 +1,67 @@
+input[type=text]
+{
+    border: 4px solid darkorange;
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    background-image: url(searchicon.png);
+    background-repeat: no-repeat;
+    background-position: 10px 12px;
+    
+}
+input[type=submit]
+{
+    border: none;
+    background-color:darkorange;
+    padding: 12px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+input[type=submit]:hover
+{
+    background-color: darkorange;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+}
+#city_name
+{
+    background-color: #FF8C00;
+    color: white;
+}
+
+.section-wrapper {
+    text-align: center;
+    max-width: 800px;
+    margin: 0px auto 10px;
+    background: #ddd;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+}
+.result-header{
+	text-align: center;
+    max-width: 800px;
+    margin: 0px auto 10px;
+	margin-top:30px;
+	margin-bottom:0;
+	background-color: darkorange;
+	color:#fff;
+	padding:10px 20px;
+}
+.section-wrapper span ,.result-header span{
+    display: inline-block;
+    width: 20%;
+	vertical-align: top;
+	float:left;
+	word-wrap: break-word;
+}
+.section-wrapper:after,.result-header:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+.body-container-wrapper {
+    padding: 0 15px;
+}

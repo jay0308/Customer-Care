@@ -1,0 +1,11 @@
+/* this style sheet for details page*/
+
+		input[type=text]
+		{
+			border: 1px solid #000000;
+			border-radius: 10px;
+			padding-top: 7px;
+			padding-bottom: 7px;
+			text-align: center;
+	
+		}
