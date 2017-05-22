@@ -1,6 +1,7 @@
 <?php
+include "location-cache.php";
 
-	include "config/connection.php";
+	/*include "config/connection.php";
 	
 	if (isset($_POST['query'])) {
 		$output='';
@@ -19,6 +20,6 @@
 		}
 		$output.='</ul>';
 		echo $output;
-	}
+	}*/
 
 ?>	

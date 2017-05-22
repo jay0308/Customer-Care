@@ -55,6 +55,7 @@ input[type=submit]:hover
     width: 20%;
 	vertical-align: top;
 	float:left;
+	word-wrap: break-word;
 }
 .section-wrapper:after,.result-header:after {
     display: block;
@@ -63,4 +64,20 @@ input[type=submit]:hover
 }
 .body-container-wrapper {
     padding: 0 15px;
+}
+.pagination {
+    margin: 40px 0;
+    padding: 20px 0;
+    border-top: 1px solid #ddd;
+}
+
+.pagination a {
+    display: inline-block;
+    color: #ccc;
+    margin: 0 10px;
+	text-decoration:none;
+}
+
+.pagination a.active {
+    color: darkorange;
 }

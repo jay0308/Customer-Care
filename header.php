@@ -20,7 +20,7 @@ include 'config/connection.php';
 	
 	if(isset($_POST['search-company']) && $_POST['search-company']!='')
 	{
-		echo "<script>window.location='search.php?search=$searchq';</script>";
+		echo "<script>window.location='pagination-search.php?search=$searchq';</script>";
 	}  
 	
 ?>

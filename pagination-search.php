@@ -4,7 +4,80 @@
 <?php include'header.php'; ?>
 <div class="body-container-wrapper">
 <?php
-	
+	// pagination function 
+	function createPagination($query,$total_data,$data_per_page){
+		include 'config/connection.php';
+			$search    =   $_GET['search'];    
+		$total_page = ceil($total_data/$data_per_page);
+			$page="";
+			if (isset($_GET['page'])) {
+				# code...
+				$page = $_GET['page'];
+
+			
+			}
+			$start=0;
+			if ($page==""or$page==1) {
+				# code...
+				$start=0;
+
+
+			}
+			else{
+
+				$start = $page * $data_per_page - $data_per_page;
+
+
+			}
+
+
+			$query = $query." limit ".$start.",".$data_per_page ;
+			/*$query = "SELECT * from details where company_name ="."'".$search."'";*/
+
+			$result  = mysqli_query($conn,$query);
+			if (mysqli_num_rows($result)>0) {
+			# code...
+				echo "<div class='result-header'>
+							<span class='col-company'>Company Name</span>
+							<span class='col-product'>Product Name</span>
+							<span class='col-location'>Location</span>
+							<span class='col-contact'>Contact Type</span>
+							<span class='col-details'>Details</span>
+					</div>";
+				while ($row = mysqli_fetch_array($result)) {
+					# code...
+					
+					echo "<div class='section-wrapper'>"."<span class='col-company'>".$row['company_name']."</span><span class='col-product'>".$row['sub_cat_name']."</span><span class='col-location'>".$row['location']."</span><span class='col-contact'>".$row['contact_key']."</span><span class='col-details'>".$row['contact_value']."</div>";
+
+				}
+			}
+			else{
+				echo "<div class='section-wrapper' style='margin-top:30px;'>No Results Found</div>";
+			}
+			
+
+			echo "<div class='pagination' style='text-align:center'>";
+			if ($page!=1 && isset($_GET['page'])) {
+				# code...
+
+				echo "<a class='previous-link' href='pagination-search.php?search=".$search."&page=".($page-1)."'>Previous</a>";
+			}	
+				for($i=1;$i<=$total_page;$i++){
+					if ($i==$page) {
+						# code...
+						echo "<a class='active' href='pagination-search.php?search=".$search."&page=".$i."' style='text-decoration:none;'>".$i."</a>";
+					}
+					else
+						echo "<a href='pagination-search.php?search=".$search."&page=".$i."' style='text-decoration:none;'>".$i."</a>";
+				}
+			if ($page!=$total_page && isset($_GET['page'])) {
+				# code...
+				echo "<a  class='next-link' href='pagination-search.php?search=".$search."&page=".($page+1)."'>Next</a>";
+			}
+			
+			echo "</div>";
+	}
+	/*end of pagination function*/
 	if(isset($_GET['search'])){
 
 		$search    =   $_GET['search'];            
@@ -22,26 +95,9 @@
 			/*$query = "SELECT * from details where company_name ="."'".$search."'";*/
 
 			$result  = mysqli_query($conn,$query);
-			
-			if (mysqli_num_rows($result)>0) {
-				# code...
-				echo "<div class='result-header'>
-							<span class='col-company'>Company Name</span>
-							<span class='col-product'>Product Name</span>
-							<span class='col-location'>Location</span>
-							<span class='col-contact'>Contact Type</span>
-							<span class='col-details'>Details</span>
-					</div>";
-				while ($row = mysqli_fetch_array($result)) {
-					# code...
-					
-					echo "<div class='section-wrapper'>"."<span class='col-company'>".$row['company_name']."</span><span class='col-product'>".$row['sub_cat_name']."</span><span class='col-location'>".$row['location']."</span><span class='col-contact'>".$row['contact_key']."</span><span class='col-details'>".$row['contact_value']."</div>";
-
-				}
-			}
-			else{
-				echo "<div class='section-wrapper' style='margin-top:30px;'>No Results Found</div>";
-			}
+			$total_data = mysqli_num_rows($result);
+			$data_per_page = 10;		
+			createPagination($query,$total_data,$data_per_page);
 			
 		}
 
@@ -56,24 +112,11 @@
 					$query = "SELECT details.company_name, details.product_name, details.sub_cat_name, details.location, contact_type.contact_key, contact_type.contact_value from details Inner Join contact_type on details.details_id = contact_type.details_id where details.company_name = "."'".$splitted[0]."'"." && details.sub_cat_name = "."'".$splitted[1]."'";
 
 			$result  = mysqli_query($conn,$query);
-			if (mysqli_num_rows($result)>0) {
-				# code...
-				echo "<div class='result-header'>
-							<span class='col-company'>Company Name</span>
-							<span class='col-product'>Product Name</span>
-							<span class='col-location'>Location</span>
-							<span class='col-contact'>Contact Type</span>
-							<span class='col-details'>Details</span>
-					</div>";
-				while ($row = mysqli_fetch_array($result)) {
-					# code...
-
-					echo "<div class='section-wrapper'>"."<span class='col-company'>".$row['company_name']."</span><span class='col-product'>".$row['sub_cat_name']."</span><span class='col-location'>".$row['location']."</span><span class='col-contact'>".$row['contact_key']."</span><span class='col-details'>".$row['contact_value']."</div>";
-				}
-			}
-			else{
-				echo "<div class='section-wrapper' style='margin-top:30px;'>No Results Found</div>";
-			}
+			$result  = mysqli_query($conn,$query);
+			$total_data = mysqli_num_rows($result);
+			$data_per_page = 10;		
+			createPagination($query,$total_data,$data_per_page);
+			
 		}
 
 		if(substr_count($search,"~")==2){
@@ -82,24 +125,10 @@
 					$query = "SELECT details.company_name, details.product_name, details.sub_cat_name, details.location, contact_type.contact_key, contact_type.contact_value from details Inner Join contact_type on details.details_id = contact_type.details_id where details.company_name = "."'".$splitted[0]."'"." && details.sub_cat_name = "."'".$splitted[1]."'"." && details.location = "."'".$splitted[2]."'";
 
 			$result  = mysqli_query($conn,$query);
-			if (mysqli_num_rows($result)>0) {
-				# code...
-				echo "<div class='result-header'>
-							<span class='col-company'>Company Name</span>
-							<span class='col-product'>Product Name</span>
-							<span class='col-location'>Location</span>
-							<span class='col-contact'>Contact Type</span>
-							<span class='col-details'>Details</span>
-					</div>";
-				while ($row = mysqli_fetch_array($result)) {
-					# code...
-					
-					echo "<div class='section-wrapper'>"."<span class='col-company'>".$row['company_name']."</span><span class='col-product'>".$row['sub_cat_name']."</span><span class='col-location'>".$row['location']."</span><span class='col-contact'>".$row['contact_key']."</span><span class='col-details'>".$row['contact_value']."</div>";
-				}
-			}
-			else{
-				echo "<div class='section-wrapper' style='margin-top:30px;'>No Results Found</div>";
-			}
+			$result  = mysqli_query($conn,$query);
+			$total_data = mysqli_num_rows($result);
+			$data_per_page = 10;		
+			createPagination($query,$total_data,$data_per_page);
 		}
 	}
 ?>
@@ -178,6 +207,7 @@
 
 						if($('.section-wrapper').length==0){
 							$('.result-header').remove();
+							$('.pagination').remove();
 							$('.body-container-wrapper').append("<div class='section-wrapper' style='margin-top:30px;'>No Results Found</div>");
 						}
 

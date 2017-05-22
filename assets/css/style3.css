@@ -65,3 +65,26 @@ input[type=submit]:hover
 .body-container-wrapper {
     padding: 0 15px;
 }
+.pagination {
+    margin: 40px 0;
+    padding: 20px 0;
+    border-top: 1px solid #ddd;
+}
+
+.pagination a {
+    display: inline-block;
+    color: #ccc;
+    margin: 0 10px;
+	text-decoration:none;
+}
+
+.pagination a.active {
+    color: darkorange;
+}
+a.previous-link, a.next-link {
+    background: darkorange;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 4px;
+    padding: 5px 10px;
+}

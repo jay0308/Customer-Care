@@ -1,5 +1,6 @@
 <?php
-
+include "product-cache.php";
+/*
 	include "config/connection.php";
 	
 	if (isset($_POST['query'])) {
@@ -19,6 +20,6 @@
 		}
 		$output.='</ul>';
 		echo $output;
-	}
+	}*/
 
 ?>	
