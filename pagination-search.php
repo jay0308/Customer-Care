@@ -9,7 +9,7 @@
 		include 'config/connection.php';
 			$search    =   $_GET['search'];    
 		$total_page = ceil($total_data/$data_per_page);
-			$page="";
+			$page=1;
 			if (isset($_GET['page'])) {
 				# code...
 				$page = $_GET['page'];
@@ -17,7 +17,7 @@
 			
 			}
 			$start=0;
-			if ($page==""or$page==1) {
+			if ($page==1) {
 				# code...
 				$start=0;
 
@@ -57,7 +57,7 @@
 			
 
 			echo "<div class='pagination' style='text-align:center'>";
-			if ($page!=1 && isset($_GET['page'])) {
+			if ($page!=1) {
 				# code...
 
 				echo "<a class='previous-link' href='pagination-search.php?search=".$search."&page=".($page-1)."'>Previous</a>";
@@ -70,7 +70,7 @@
 					else
 						echo "<a href='pagination-search.php?search=".$search."&page=".$i."' style='text-decoration:none;'>".$i."</a>";
 				}
-			if ($page!=$total_page && isset($_GET['page'])) {
+			if ($page!=$total_page) {
 				# code...
 				echo "<a  class='next-link' href='pagination-search.php?search=".$search."&page=".($page+1)."'>Next</a>";
 			}
@@ -201,7 +201,11 @@
 				    	var pName = $('#search-product').val();
 						var lName = $('#search-location').val();
 						$('.section-wrapper').each(function(){
-							if(!($(this).find('.col-product').html()==pName && $(this).find('.col-location').html()==lName ))
+							
+							if(!($(this).find('.col-product').html()==pName && $(this).find('.col-location').html()==lName ) && pName===!"undefined")
+								$(this).remove();
+
+							if(!($(this).find('.col-location').html()==lName ))
 								$(this).remove();
 						});
 

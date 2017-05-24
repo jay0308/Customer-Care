@@ -19,6 +19,12 @@ $query = mysqli_query($conn,$sql);
 				<div id="productList"></div>
 				<input autocomplete="off" type="text" placeholder="Location" class="w3-margin-bottom w3-card-2 w3-input" id="search-location" name="search-location">
 				<div id="locationList"></div>
+				<div style="text-align: center;">
+					<label>Customer Care</label>
+					<input type="radio" name="filter" value="customer-care" checked="true">
+					<label>Service Center</label>
+					<input type="radio" name="filter" value="service-center">
+				</div>
 			</form>
 		</div>
 		<div class="w3-col w3-container" style="width: 20%"></div>
@@ -194,18 +200,41 @@ $query = mysqli_query($conn,$sql);
 				// for location name
 
 				$( "#search-location" ).keyup(function(){
-					var query = $(this).val();
-					if(query!=''){
-						$.ajax({
-							url:"ajax-location-search.php",
-							method:"POST",
-							data:{query:query},
-							success:function(data){
-									$("#locationList").fadeIn();
-									$("#locationList").html(data);
-								}
-						});
+					if ($('input[type="radio"]:checked').val()!='service-center') {
+						var query = $(this).val();
+						if(query!=''){
+							$.ajax({
+								url:"ajax-location-search.php",
+								method:"POST",
+								data:{query:query},
+								success:function(data){
+										$("#locationList").fadeIn();
+										$("#locationList").html(data);
+									}
+							});
+						}
 					}
+					else{
+
+						var states = ['Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh', 'Goa','Gujarat','Haryana','Himachal Pradesh','Jammu & Kashmir','Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Tripura','Uttarakhand','Uttar Pradesh','West Bengal',];
+						var out="<ul class = 'list-unstyled'>";
+						for (var i = 0; i < states.length; i++) {
+							var str = states[i].toLowerCase();
+							var substr = ($('#search-location').val()).toLowerCase();
+
+							if (str.indexOf(substr) !== -1) {
+								out+="<li>"+states[i]+"</li>";
+							}
+							else if(i==states[i].length){
+								out+="<li>Location not found</li>";
+							}
+						}
+						out+="</ul>";
+						$("#locationList").fadeIn();
+						$("#locationList").html(out);
+					}
+
+					
 				});
 
 				$(document).on('click','#locationList li',function(){
@@ -229,6 +258,9 @@ $query = mysqli_query($conn,$sql);
 				    }
 				});
 				// end of submit form
+				$('input[type="radio"]').change(function(){
+					$('#locationList').fadeOut();
+				});
 			});
 
 

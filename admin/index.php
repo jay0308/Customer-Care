@@ -163,7 +163,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="<?php echo $baseurl?>/ctype/posts-type.php">
+                        <a href="<?php echo $baseurl?>/posts/posts.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -173,6 +173,28 @@
                     </div>
                 </div>
                 <!-- end of posts section -->
+
+                <!-- service center section -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">Service Centet</div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <a href="<?php echo $baseurl ?>/service center/servicecenter.php">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                <!-- end of service center section -->
             </div>
             <!-- /.row -->
            

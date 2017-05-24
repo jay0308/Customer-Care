@@ -12,7 +12,7 @@
 ?>
 
 	<div id="page-wrapper">
-        <a href="<?php echo $baseurl; ?>">Home</a> / <a href="<?php echo $baseurl; ?>category/category.php">Details</a> / Add Post Type Details 
+        <a href="<?php echo $baseurl; ?>">Home</a> / <a href="<?php echo $baseurl; ?>Post Type/post-type.php">Details</a> / Add Post Type Details 
             <div class="row">
                 <div class="col-lg-12">
                 <h1 class="page-header">Add Post Type</h1>

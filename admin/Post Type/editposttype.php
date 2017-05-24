@@ -5,7 +5,7 @@
 	if(isset ($_GET['id']))
 	{
 	   $id = $_GET['id'];
-	   $query = "SELECT * FROM category WHERE cat_id = '$id'";
+	   $query = "SELECT * FROM post_type WHERE post_type_id = '$id'";
 	   //print_r ($query); exit();
 	   $run = mysqli_query($conn,$query);
 	   $result = mysqli_fetch_assoc($run);
@@ -48,7 +48,7 @@
                             <form role="form" action="" method="post">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input class="form-control" type="text" name="edit_name" value="<?php echo $result['cat_name'] ?>">
+                                    <input class="form-control" type="text" name="edit_name" value="<?php echo $result['post_type_name'] ?>">
 								</div>
                                    
 								<input type ="hidden" name="id" value="<?php echo $result['post_type_id'];?>">

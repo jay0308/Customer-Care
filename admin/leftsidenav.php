@@ -35,7 +35,13 @@
                             <a href="<?php echo $baseurl;?>ctype/contact-type.php"><i class="fa fa-edit fa-fw"></i> Contact Type</a>
                         </li>
                          <li>
-                            <a href="<?php echo $baseurl;?>ctype/posts.php"><i class="fa fa-edit fa-fw"></i> Posts</a>
+                            <a href="<?php echo $baseurl;?>posts/posts.php"><i class="fa fa-edit fa-fw"></i> Posts</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $baseurl;?>Post Type/post-type.php"><i class="fa fa-edit fa-fw"></i> Post Type</a>
+                        </li>
+                         <li>
+                            <a href="<?php echo $baseurl;?>service center/servicecenter.php"><i class="fa fa-edit fa-fw"></i>Service Center</a>
                         </li>
                      
                         

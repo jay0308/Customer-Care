@@ -32,7 +32,7 @@
                                 <thead>
                                     <tr>
                                         <th>Sr.No</th>
-                                        <th>Post Type</th>
+                                        <th colspan="2">Post Type</th>
                                     </tr>
                                 </thead>
 																

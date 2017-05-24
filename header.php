@@ -19,8 +19,14 @@ include 'config/connection.php';
 	}
 	
 	if(isset($_POST['search-company']) && $_POST['search-company']!='')
-	{
-		echo "<script>window.location='pagination-search.php?search=$searchq';</script>";
+	{	if ($_POST['filter']=='customer-care') {
+			# code...
+			echo "<script>window.location='pagination-search.php?search=$searchq';</script>";
+		}
+		else
+			echo "<script>window.location='service-center-search.php?search=$searchq';</script>";
+
+		
 	}  
 	
 ?>
@@ -40,6 +46,7 @@ include 'config/connection.php';
 <link rel="stylesheet" type="text/css" href="assets/css/style3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" /> 
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
@@ -51,6 +58,13 @@ include 'config/connection.php';
 <body>
     <!--header start-->
 	<div class="w3-container w3-border-bottom" style="border-bottom-color: #FFFFFF">
-		
-		<a href="<?php echo $baseurl1; ?>"><img src="assets/css/logo.png" alt="Lead edge consultancy" style="width:100px; height: 80px; "></a>
+		<div class="w3-col m4 l2">
+			<a href="<?php echo $baseurl1; ?>"><img src="assets/css/logo.png" alt="Lead edge consultancy" style="width:100px; height: 80px; "></a>
+		</div>
+		<div class="w3-col m8 l10">
+			<ul class="w3-ul menu-wrapper">
+				<li><a href="<?php echo $baseurl1; ?>"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+				<li><a href="news.php">News</a></li>
+			</ul>
+		</div>
 	</div> <!--header end-->
